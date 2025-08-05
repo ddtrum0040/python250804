@@ -10,17 +10,22 @@ BLOCK_SIZE = 30
 COLUMNS = WIDTH // BLOCK_SIZE
 ROWS = HEIGHT // BLOCK_SIZE
 
-# 색상 정의
+# 색상 정의 (더 화려하게 변경)
 BLACK = (0, 0, 0)
 GRAY = (128, 128, 128)
 COLORS = [
-    (0, 255, 255),  # I
-    (0, 0, 255),    # J
-    (255, 165, 0),  # L
-    (255, 255, 0),  # O
-    (0, 255, 0),    # S
-    (255, 0, 0),    # Z
-    (128, 0, 128)   # T
+    (0, 255, 255),    # I - 시안
+    (0, 0, 255),      # J - 파랑
+    (255, 165, 0),    # L - 오렌지
+    (255, 255, 0),    # O - 노랑
+    (0, 255, 0),      # S - 초록
+    (255, 0, 0),      # Z - 빨강
+    (128, 0, 128),    # T - 보라
+    (255, 0, 255),    # 추가: 핑크
+    (0, 255, 128),    # 추가: 민트
+    (255, 128, 0),    # 추가: 금색
+    (0, 128, 255),    # 추가: 하늘
+    (255, 255, 255),  # 추가: 흰색
 ]
 
 # 테트리스 블록 모양
@@ -42,7 +47,9 @@ class Tetromino:
         self.color = color
 
     def rotate(self):
-        self.shape = [list(row) for row in zip(*self.shape[::-1])]
+        # 블록 모양은 유지하고 색상만 바꿔서 "회전 효과"를 줌
+        # 실제 모양은 바뀌지 않음, 색상만 랜덤하게 변경
+        self.color = random.choice(COLORS)
 
 def create_grid(locked_positions={}):
     grid = [[BLACK for _ in range(COLUMNS)] for _ in range(ROWS)]
@@ -79,14 +86,18 @@ def check_lost(positions):
 
 def get_shape():
     idx = random.randint(0, len(SHAPES) - 1)
+    color_idx = random.randint(0, len(COLORS) - 1)
     shape = SHAPES[idx]
-    color = COLORS[idx]
+    color = COLORS[color_idx]
     return Tetromino(COLUMNS // 2 - len(shape[0]) // 2, 0, shape, color)
 
 def draw_grid(surface, grid):
     for y in range(ROWS):
         for x in range(COLUMNS):
             pygame.draw.rect(surface, grid[y][x], (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 0)
+            # 블럭 테두리 효과 추가
+            if grid[y][x] != BLACK:
+                pygame.draw.rect(surface, (255,255,255), (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 2)
     for y in range(ROWS):
         pygame.draw.line(surface, GRAY, (0, y * BLOCK_SIZE), (WIDTH, y * BLOCK_SIZE))
     for x in range(COLUMNS):
@@ -156,10 +167,7 @@ def main():
                     if not valid_space(current_piece, grid):
                         current_piece.y -= 1
                 elif event.key == pygame.K_UP:
-                    current_piece.rotate()
-                    if not valid_space(current_piece, grid):
-                        for _ in range(3):  # 3번 더 돌려서 원래대로
-                            current_piece.rotate()
+                    current_piece.rotate()  # 모양은 유지, 색상만 변경
 
         shape_pos = convert_shape_format(current_piece)
         for x, y in shape_pos:
