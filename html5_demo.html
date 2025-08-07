@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 데모 페이지</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            background: #fff;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        button {
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #357ab8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML5 & CSS3 데모 페이지</h1>
+        <p>HTML5 태그와 CSS3 스타일, 자바스크립트 예제</p>
+    </header>
+    <nav>
+        <a href="#intro">소개</a>
+        <a href="#features">특징</a>
+        <a href="#contact">문의</a>
+    </nav>
+    <main>
+        <section id="intro">
+            <h2>HTML5란?</h2>
+            <p>HTML5는 웹 문서의 구조를 정의하는 최신 표준입니다. 다양한 멀티미디어와 그래픽, 그리고 새로운 API를 지원합니다.</p>
+        </section>
+        <section id="features">
+            <h2>주요 특징</h2>
+            <ul>
+                <li>시맨틱 태그 지원 (header, nav, main, section, footer 등)</li>
+                <li>비디오, 오디오 태그</li>
+                <li>폼 기능 강화</li>
+                <li>CSS3와의 통합</li>
+            </ul>
+            <button id="featureBtn">특징 더보기</button>
+            <p id="featureMsg" style="color:#4a90e2; font-weight:bold;"></p>
+        </section>
+        <section id="contact">
+            <h2>문의하기</h2>
+            <form>
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required>
+                <br><br>
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <button type="submit">보내기</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 HTML5 데모 페이지
+    </footer>
+    <script>
+        // 간단한 자바스크립트: 버튼 클릭 시 메시지 표시
+        document.getElementById('featureBtn').addEventListener('click', function() {
+            document.getElementById('featureMsg').textContent = 'HTML5는 웹 개발의 미래입니다!';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body {
+    @apply bg-pastel-blue font-sans;
+}
+
+header {
+    @apply bg-pastel-purple text-white p-5 text-center;
+}
+
+main {
+    @apply max-w-lg mx-auto my-8 p-6 bg-white rounded-lg shadow-lg;
+}
+
+input[type="text"] {
+    @apply w-full p-3 border border-pastel-gray rounded-md mb-4;
+}
+
+button {
+    @apply bg-pastel-green text-white border-none py-2 px-4 rounded-md cursor-pointer;
+}
+
+button:hover {
+    @apply bg-pastel-dark-green;
+}
+
+ul {
+    @apply list-none p-0;
+}
+
+li {
+    @apply bg-pastel-yellow my-2 p-4 rounded-md flex justify-between items-center;
+}
+
+.delete-btn {
+    @apply bg-pastel-red border-none text-white py-1 px-3 rounded-md cursor-pointer;
+}
+
+.delete-btn:hover {
+    @apply bg-pastel-dark-red;
+}

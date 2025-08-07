@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List 앱</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pastelBlue: '#a7c7e7',
+              pastelPurple: '#c3aed6',
+              pastelGreen: '#b8e2c8',
+              pastelPink: '#f7cac9',
+              pastelYellow: '#fff2b2',
+              pastelRed: '#ffb3b3'
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-pastelBlue min-h-screen flex flex-col">
+    <header class="bg-pastelPurple text-white py-6 text-center shadow">
+        <h1 class="text-3xl font-bold">To-do List 앱</h1>
+        <p class="mt-2 text-lg">할 일을 관리하세요!</p>
+    </header>
+    <main class="flex-1 flex items-center justify-center">
+        <div class="w-full max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 mt-8 mb-8">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="taskInput" placeholder="할 일을 입력하세요..." class="flex-1 p-3 border border-pastelPurple rounded-lg focus:outline-none focus:ring-2 focus:ring-pastelPurple transition" />
+                <button id="addTaskBtn" class="bg-pastelGreen text-gray-700 font-semibold px-6 py-3 rounded-lg hover:bg-pastelYellow transition">추가</button>
+            </div>
+            <ul id="taskList" class="mt-6 space-y-3"></ul>
+        </div>
+    </main>
+    <footer class="bg-pastelPurple text-white text-center py-4">
+        &copy; 2025 To-do List 앱
+    </footer>
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
+
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText) {
+                const li = document.createElement('li');
+                li.className = "flex items-center justify-between bg-pastelPink px-4 py-3 rounded-lg shadow-sm";
+                
+                const span = document.createElement('span');
+                span.textContent = taskText;
+                span.className = "break-all";
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '삭제';
+                deleteBtn.className = "bg-pastelRed text-white px-4 py-2 rounded-lg hover:bg-red-400 transition";
+                deleteBtn.onclick = () => li.remove();
+
+                li.appendChild(span);
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+                taskInput.value = '';
+                taskInput.focus();
+            }
+        }
+
+        addTaskBtn.addEventListener('click', addTask);
+
+        taskInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>

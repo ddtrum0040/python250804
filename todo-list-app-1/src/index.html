@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List 앱</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-pastel-blue font-sans">
+    <header class="bg-pastel-purple text-white p-5 text-center">
+        <h1 class="text-2xl">To-do List 앱</h1>
+    </header>
+    <main class="max-w-lg mx-auto my-10 p-5 bg-white rounded-lg shadow-lg">
+        <input type="text" id="taskInput" placeholder="할 일을 입력하세요..." class="w-full p-3 border border-gray-300 rounded mb-3">
+        <button id="addTaskBtn" class="w-full bg-pastel-green text-white p-3 rounded hover:bg-green-600">추가</button>
+        <ul id="taskList" class="mt-5"></ul>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
